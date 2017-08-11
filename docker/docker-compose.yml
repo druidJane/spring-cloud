@@ -1,11 +1,15 @@
-server:
-  image: server
+eureka-server:
+  image: server:0.0.1-SNAPSHOT
   ports:
    - "1111:1111"
-  hostname: center
-admin:
-  image: client
+  hostname: eureka-server
+client:
+  image: client:0.0.1-SNAPSHOT
+  links:
+   - eureka-server
+  hostname: eureka-client
   ports:
    - "8080:8080"
-  links:
-   - center
+  environment:
+   EUREKA_HOST: eureka-server
+   EUREKA_PORT: 1111
