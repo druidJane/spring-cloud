@@ -1,0 +1,11 @@
+server:
+  image: server
+  ports:
+   - "1111:1111"
+  hostname: center
+admin:
+  image: client
+  ports:
+   - "8080:8080"
+  links:
+   - center
